@@ -18,6 +18,7 @@ package com.aerospike.examples;
 
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
@@ -40,7 +41,7 @@ public abstract class AsyncExample {
 		EventLoops eventLoops;
 		
 		if (params.useNetty) {			
-			EventLoopGroup group = new NioEventLoopGroup(1);
+			EventLoopGroup group = new EpollEventLoopGroup();
 			eventLoops = new NettyEventLoops(group);
 		}
 		else {
